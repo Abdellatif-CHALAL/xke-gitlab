@@ -7,8 +7,9 @@ Ces variables seront ensuite utilisées dans l'image.
 * [Documentation](https://docs.gitlab.com/ee/ci/docker/README.html)
 
 ## 1. Définir une image Docker
-    * Créer un job se reposant sur l'image Docker `alpine`
-    * Afficher le contenu du `$HOME` dans l'image
+    
+* Créer un job se reposant sur l'image Docker `alpine`
+* Afficher le contenu du `$HOME` dans l'image
     
 ## 2. Variables de pipeline
 

@@ -47,10 +47,12 @@ dist:
 </details>
 
 ## 2. Utiliser les artefacts
-    * Reprendre le pipeline précédent et déclarer le tar.gz comme artefact du build
-    * Fixer sa durée de vie à 5 minutes maximum
+    
+* Reprendre le pipeline précédent et déclarer le tar.gz comme artefact du build
+* Fixer sa durée de vie à 5 minutes maximum
 
 ## 3. Lier les jobs
-    * TODO
+    
+* TODO
     
 [< Previous](../exercice_2/exercice_2.md) | [Home](../README.md) | [Next >](../exercice_4/exercice_4.md)

@@ -8,10 +8,11 @@ L'interface web de GitLab CI dispose d'un linter permettant de valider la syntax
 Chercher CI Lint.
     
 ## 1. Utiliser les jobs et les stages
-    * Créer un pipeline contenant un unique job affichant "Hello World". 
-    * A quel stage votre job a-t'il été rattaché lors de son exécution ? 
-    * Ajoutez 3 stages à votre configuration (`build`, `test`, `deploy`)
-    * Rattachez à chaque stage un job spécifique
+    
+* Créer un pipeline contenant un unique job affichant "Hello World". 
+* A quel stage votre job a-t'il été rattaché lors de son exécution ? 
+* Ajoutez 3 stages à votre configuration (`build`, `test`, `deploy`)
+* Rattachez à chaque stage un job spécifique
 
 <details><summary>Solution</summary>
 <p>
@@ -55,10 +56,10 @@ myDeployJob:
 A l'entrée ou à la sortie d'un job il est possible de réaliser des opérations supplémentaires selon les besoins.
 Ces opérations peuvent être globales ou spécifiques au job en cours d'exécution.
 
-    * Ajouter un pré-script global dans la configuration
-    * Ajouter un pré-script spécifique au job rattaché au stage `test`
-    * Vérifiez pour chaque job quel pré-script a été finalement lancé.
-    * Que peut-on en déduire à propos de la priorité entre un `before-script` global et un `before_script` à l'intérieur d'un job ?
+* Ajouter un pré-script global dans la configuration
+* Ajouter un pré-script spécifique au job rattaché au stage `test`
+* Vérifiez pour chaque job quel pré-script a été finalement lancé.
+* Que peut-on en déduire à propos de la priorité entre un `before-script` global et un `before_script` à l'intérieur d'un job ?
 
 <details><summary>Solution</summary>
 <p>
@@ -94,6 +95,6 @@ myDeployJob:
 
 Dans les faits utiliser un `before_script` se rencontre surtout quand il s'agit de vérifier les pré-requis au lancement d'un job.
 
-    * Créer un nouveau fichier de pipeline
+* Créer un nouveau fichier de pipeline
 
 [< Previous](../exercice_0/exercice_0.md) | [Home](../README.md) | [Next >](../exercice_2/exercice_2.md)
