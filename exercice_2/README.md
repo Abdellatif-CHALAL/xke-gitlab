@@ -87,4 +87,4 @@ Nous allons essayer de faire un peu mieux en utilisant une variable de pipeline.
 </p>
 </details>
 
-[< Previous](../exercice_1/README.md) | [Home](../README.md) | [Next >](../exercice_3/exercice_3.md)
+[< Previous](../exercice_1/README.md) | [Home](../README.md) | [Next >](../exercice_3/README.md)

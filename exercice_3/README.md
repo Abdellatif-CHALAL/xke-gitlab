@@ -95,4 +95,4 @@ TODO:
 </p>
 </details>
     
-[< Previous](../exercice_2/exercice_2.md) | [Home](../README.md) | [Next >](../exercice_4/exercice_4.md)
+[< Previous](../exercice_2/README.md) | [Home](../README.md) | [Next >](../exercice_4/exercice_4.md)
