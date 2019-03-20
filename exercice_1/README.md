@@ -12,7 +12,7 @@ Chercher CI Lint.
 * Créer un pipeline contenant un unique job affichant "Hello World". 
 * A quel stage votre job a-t'il été rattaché lors de son exécution ? 
 * Ajoutez 3 stages à votre configuration (`build`, `test`, `deploy`)
-* Rattachez à chaque stage un job spécifique
+* Rattachez chaque job à un stage spécifique
 
 <details><summary>Solution</summary>
 <p>
@@ -61,7 +61,8 @@ Ces opérations peuvent être globales ou spécifiques au job en cours d'exécut
 * Vérifiez pour chaque job quel pré-script a été finalement lancé.
 * Que peut-on en déduire à propos de la priorité entre un `before-script` global et un `before_script` à l'intérieur d'un job ?
 
-<details><summary>Solution</summary>
+<details>
+<summary>Solution</summary>
 <p>
 
 ```yaml
@@ -90,11 +91,15 @@ myDeployJob:
   script:
     - echo "Running the deploy script"
 ```
+</p>
+</details>
 
 ## 4. Un exemple un peu plus concret
 
-Dans les faits utiliser un `before_script` se rencontre surtout quand il s'agit de vérifier les pré-requis au lancement d'un job.
+Dans les faits un `before_script` est surtout utile pour vérifier les pré-requis au lancement d'un job et le faire échouer si besoin.
+Essayons de mettre cela en pratique via un simple `apt-get`
 
 * Créer un nouveau fichier de pipeline
+
 
 [< Previous](../exercice_0/exercice_0.md) | [Home](../README.md) | [Next >](../exercice_2/exercice_2.md)

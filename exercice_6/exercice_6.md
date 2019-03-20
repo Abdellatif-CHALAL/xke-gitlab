@@ -5,5 +5,16 @@ Il s'agit de la fonctionnalité _GitLab Pages_.
 
 * Créer un nouveau pipeline
 * Vérifier que le site est disponible
-    
+
+<details>
+<summary>Solution</summary>
+<p>
+
+```yaml
+
+```
+
+</p>
+</details>
+
 [< Previous](../exercice_3/exercice_3.md) | [Home](../README.md) |
