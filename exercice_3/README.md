@@ -10,7 +10,9 @@ Pour compléter ces notions de cache et d'artefacts nous
     * Job `test`: Vérifier l'existence du fichier.
     * Ne pas définir de cache pour le moment.
 * Le fichier produit par le job `build` est-il disponible dans le job `test` ?
-* Déclarer un cache se basant sur le contenu du répertoire `build`.
+* Déclarer un cache
+    * Se basant sur le contenu du répertoire `build`.
+    * Disposant d'un clé pour isoler le cache entre les pipelines
 * Vérifier que le pipeline n'échoue plus.
 
 <details>
@@ -19,24 +21,26 @@ Pour compléter ces notions de cache et d'artefacts nous
 
 ```yaml
 cache:
-    paths:
-        - ./build/
+  key: "$CI_COMMIT_REF_SLUG"
+  paths:
+    - ./build/
 
 stages:
-    - build
-    - test
-    - deploy
+  - build
+  - test
 
 build:
-    stage: build
-    script:
-        - mkdir build
-        - echo "test" > build/build-info.txt
+  stage: build
+  before_script:
+    - rm -rf ./build
+    - mkdir ./build
+  script:
+    - echo "test" > build/build-info.txt
 
 test:
-    stage: test
-    script:
-        - if [ ! -f build/build-info.txt ]; then exit 1; fi
+  stage: test
+  script:
+    - if [ ! -f build/build-info.txt ]; then exit 1; fi
 ```
 
 </p>
@@ -44,14 +48,13 @@ test:
 
 ## 2. Utiliser les artefacts
 
-* Ajouter un job `dist` (stage `deploy`) construisant un `*.tar.gz` à partir du contenu de `build`
+* Ajouter un job `dist` (stage `deploy`) construisant un `tar.gz` à partir du contenu de `build`.
     * `tar zcvf dist/artifact.tar.gz build/`
-* Déclarer le tar.gz comme artefact du build
-* Fixer sa durée de vie à 5 minutes maximum
-
-<details>
-<summary>Solution</summary>
-<p>
+* Déclarer le `tar.gz` comme artefact du build.
+* L'artefact doit:
+    * Etre disponible dans le répertoire `dist`.
+    * Avoir une durée de vie à 5 minutes.
+    * Etre téléchargable dans un zip nommé `<projet>-<branche>-<sha1 du commit>` (cf. les variables d'environement d'un pipeline).
 
 <details>
 <summary>Solution</summary>
@@ -59,34 +62,41 @@ test:
 
 ```yaml
 cache:
-    paths:
-        - ./build/
+  key: "$CI_COMMIT_REF_SLUG"
+  paths:
+    - ./build
 
 stages:
-    - build
-    - test
-    - deploy
+  - build
+  - test
+  - deploy
 
 build:
-    stage: build
-    script:
-        - mkdir build
-        - echo "test" > build/build-info.txt
+  stage: build
+  before_script:
+    - rm -rf ./build
+    - mkdir ./build
+  script:
+    - echo "test" > ./build/build-info.txt
 
 test:
-    stage: test
-    script:
-        - if [ ! -f build/build-info.txt ]; then exit 1; fi
+  stage: test
+  script:
+    - if [ ! -f ./build/build-info.txt ]; then exit 1; fi
 
-deploy:
-    stage: deploy
-    script:
-        - mkdir dist
-        - tar zcvf dist/artifact.tar.gz build/
+dist:
+  stage: deploy
+  before_script:
+    - rm -rf ./dist
+    - mkdir ./dist
+  script:
+    - tar zcvf ./dist/artifact.tar.gz ./build 
+  artifacts:
+    name: "$CI_PROJECT_NAME-$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA"
+    paths:
+      - dist/
+    expire_in: 5 mins
 ```
-
-</p>
-</details>
 
 </p>
 </details>

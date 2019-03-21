@@ -8,7 +8,7 @@ variables qui seront ensuite utilisées dans l'image.
 
 ## 1. Définir une image Docker
     
-* Définir une image globale reposant sur l'image Docker `ruby:slim`.  
+* Définir une image globale reposant sur l'image Docker `ruby:alpine`.  
 * Créer un job affichant la version de Ruby.
 
 <details>
@@ -19,7 +19,7 @@ variables qui seront ensuite utilisées dans l'image.
 stages:
   - test
 
-image: ruby:slim
+image: ruby:alpine
     
 myRubyTest:
   stage: test
@@ -34,7 +34,7 @@ myRubyTest:
 
 Il est possible de faire cohabiter plusieurs versions d'une même image dans un pipeline.
 Une application directe est la possibilité de réaliser des jobs identiques mais exécutés 
-sur des plateformes différentes (`python`, `java`, `node` pour ne pas les citer)
+sur des versions différentes (`python`, `java`, `node` pour ne pas les citer)
 
 Pour illuster cet exercice nous utiliserons l'image Docker de [Ruby](https://hub.docker.com/_/ruby) `ruby:<version>-alpine`
  
@@ -53,13 +53,13 @@ stages:
 
 myRubyTest:2.6:
   stage: test
-  image: ruby:2.6-slim
+  image: ruby:2.6-alpine
   script:
     - ruby -v
 
 myRubyTest:2.5:
   stage: test
-  image: ruby:2.5-slim
+  image: ruby:2.5-alpine
   script:
     - ruby -v
 ```
@@ -72,16 +72,29 @@ myRubyTest:2.5:
 Vous l'aurez remarqué, la précédente configuration oblige créer un nouveau job pour chaque version de Ruby.
 Nous allons essayer de faire un peu mieux en utilisant une variable de pipeline.
 
-* Modifier la configuration précédente afin que le tag de l'image soit paramétrable.
-* La variable stockant le tag doit disposer d'une valeur par défaut.
+* Modifier le pipeline afin que le tag de l'image soit paramétrable.
+* Ajouter une valeur par défaut pour le tag.
 * Utiliser le lanceur de pipeline manuel dans lequel une variable sera injectée.
+* Vérifier le résultat de la commande `ruby -v`
 
 <details>
 <summary>Solution</summary>
 <p>
 
 ```yaml
+variables:
+  RUBY_IMAGE_TAG: alpine
 
+stages:
+  - test
+
+myRubyTest:
+  stage: test
+  variables:
+    RUBY_IMAGE: ruby:${RUBY_IMAGE_TAG}
+  image: $RUBY_IMAGE
+  script:
+    - ruby -v
 ```
 
 </p>

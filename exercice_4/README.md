@@ -12,8 +12,9 @@ Les `services` sont justement là pour répondre à cette problématique.
 Avoir recours à des services dans un pipeline exécuté avec un runner Kubernetes impose certaines limitations.
 * Les alias ne sont pas utilisables, on ne peut donc pas définir plusieurs services identiques
 * Accéder au service ne pourra se faire que sur `localhost` ou sur `127.0.0.1` car le runner déploie un unique pod.
+Ces limitations sont à connaître lorsqu'il s'agit de rattacher un runner à votre pipeline car elles obligent à adapter votre code.
 
-## 1. 
+## 1. Déclarer un service dans un pipeline
 
 * Créer un pipeline déclarant: 
     * Un service utilisant l'image mongo 
