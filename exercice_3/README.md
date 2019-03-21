@@ -5,11 +5,13 @@ Pour compléter ces notions de cache et d'artefacts nous
 
 ## 1. Utiliser le cache
 
-* Créer un pipeline constitué de deux jobs
-    * Job 1: Créer un fichier dans un répertoire `build`
-    * Job 2: Créer un tar.gz contenant le fichier précédent et déposer l'archive dans un répertoire `dist` 
-* Le deuxième job est-il capable d'utiliser le fichier produit par le job 1 ?
-* Déclarer un cache utilisant le répertoire dist
+* Créer un pipeline constitué de deux jobs:
+    * Job `build`: Créer un fichier `build-info.txt` dans un répertoire `build`.
+    * Job `test`: Vérifier l'existence du fichier.
+    * Ne pas définir de cache pour le moment.
+* Le fichier produit par le job `build` est-il disponible dans le job `test` ?
+* Déclarer un cache se basant sur le contenu du répertoire `build`.
+* Vérifier que le pipeline n'échoue plus.
 
 <details>
 <summary>Solution</summary>
@@ -23,7 +25,47 @@ cache:
 stages:
     - build
     - test
-    - dist
+    - deploy
+
+build:
+    stage: build
+    script:
+        - mkdir build
+        - echo "test" > build/build-info.txt
+
+test:
+    stage: test
+    script:
+        - if [ ! -f build/build-info.txt ]; then exit 1; fi
+```
+
+</p>
+</details>
+
+## 2. Utiliser les artefacts
+
+* Ajouter un job `dist` (stage `deploy`) construisant un `*.tar.gz` à partir du contenu de `build`
+    * `tar zcvf dist/artifact.tar.gz build/`
+* Déclarer le tar.gz comme artefact du build
+* Fixer sa durée de vie à 5 minutes maximum
+
+<details>
+<summary>Solution</summary>
+<p>
+
+<details>
+<summary>Solution</summary>
+<p>
+
+```yaml
+cache:
+    paths:
+        - ./build/
+
+stages:
+    - build
+    - test
+    - deploy
 
 build:
     stage: build
@@ -36,8 +78,8 @@ test:
     script:
         - if [ ! -f build/build-info.txt ]; then exit 1; fi
 
-dist:
-    stage: dist
+deploy:
+    stage: deploy
     script:
         - mkdir dist
         - tar zcvf dist/artifact.tar.gz build/
@@ -46,26 +88,13 @@ dist:
 </p>
 </details>
 
-## 2. Utiliser les artefacts
-    
-* Reprendre le pipeline précédent et déclarer le tar.gz comme artefact du build
-
-NB: donner la commande de tar
-
-* Fixer sa durée de vie à 5 minutes maximum
-
-<details>
-<summary>Solution</summary>
-<p>
-
-```yaml
-
-```
-
 </p>
 </details>
 
 ## 3. Lier les jobs
+
+* En s'inspirant du pipeline décrit dans l'exercice 2.2  
+* 
 
 <details>
 <summary>Solution</summary>
@@ -80,9 +109,8 @@ NB: donner la commande de tar
 
 ## 4. Déclencher un pipeline
   
-TODO: 
-* Expliquer la différence de scope entre le cache et les artefacts   
 * 
+*
 
 <details>
 <summary>Solution</summary>

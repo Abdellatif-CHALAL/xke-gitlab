@@ -3,6 +3,8 @@
 Tout comme son homologue GitHub il est possible de servir du contenu statique à partir d'un pipeline.
 Il s'agit de la fonctionnalité _GitLab Pages_.
 
+## 1. Création d'un site statique
+
 * Créer un nouveau pipeline
 * Vérifier que le site est disponible
 
