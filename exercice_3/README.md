@@ -118,6 +118,7 @@ En s'inspirant du pipeline de l'exercice [2.2](../exercice_2) créer un pipeline
 Au final le graphe de dépendance entre les jobs serait donc le suivant : 
 
 >build:X -> test:X
+>
 >build:Y -> test:Y
 
 <details>
