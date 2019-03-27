@@ -76,6 +76,46 @@ myDeployJob:
 </p>
 </details>
 
+* Ajouter un job supplementaire (lancement des tests IT par exemple) qui tourne en parallèle avec l'autre job de test existant
+
+<details><summary>Solution</summary>
+<p>
+
+```yaml
+stages:
+  - build
+  - test
+  - deploy
+
+myBuildJob:
+  stage: build
+  script:
+    - echo "Running the build script"
+
+myTestJob:
+  stage: test
+  script:
+    - echo "Running the test script"
+
+myTestItJob:
+  stage: test
+  script:
+    - echo "Running the test script"
+
+myDeployJob:
+  stage: deploy
+  script:
+    - echo "Running the deploy script"
+```
+
+<p>
+<img src="two-test-jobs.png" height="200">
+</p> 
+
+
+</p>
+</details>
+
 ## 2. Les commandes avant et après un job
 
 A l'entrée ou à la sortie d'un job il est possible de réaliser des opérations supplémentaires selon les besoins.
