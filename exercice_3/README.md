@@ -103,16 +103,16 @@ dist:
 </p>
 </details>
 
-## 3. Lier les pipelines
+## 3. Lier les jobs
 
-En s'inspirant du pipeline de l'exercice 2.2 créer un pipeline contenant:
+En s'inspirant du pipeline de l'exercice [2.2](../exercice_2) créer un pipeline contenant :
 * Deux jobs de build
     * Produisant chacun un fichier texte contenant la sortie de la commande `ruby -v`
     * Exécutés avec deux versions différentes de l'image Ruby 
 * Deux jobs de test
     * Affichant le contenu du fichier texte construit pendant le job de build
 
-Au final le graphe de dépendance entre les jobs serait donc le suivant: 
+Au final le graphe de dépendance entre les jobs serait donc le suivant : 
 
 >build:X -> test:X
 >build:Y -> test:Y
@@ -137,7 +137,7 @@ build:2.6:
     expire_in: 1 min
 
 build:2.5:
-  stage: test
+  stage: build
   image: ruby:2.5-alpine
   script:
     - ruby -v > build_2.5.txt
@@ -163,23 +163,12 @@ test:2.5:
     - build:2.5
 ```
 
-</p>
-</details>
-
-## 4. Déclencher un pipeline
-  
-* 
-*
-
-<details>
-<summary>Solution</summary>
 <p>
-
-```yaml
-
-```
+<img src="link_jobs.png" height="200">
+</p> 
 
 </p>
 </details>
+
     
-[< Previous](../exercice_2/README.md) | [Home](../README.md) | [Next >](../exercice_4/README.md)
+[< Previous](../exercice_2) | [Home](..) | [Next >](../exercice_4)
