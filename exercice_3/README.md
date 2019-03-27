@@ -4,7 +4,7 @@ Dans cet exercice nous allons partager certains éléments entre les jobs à l'a
 
 ## 1. Le cache
 
-`Cache` est utilisé pour spécifier une liste de fichiers et de répertoires à mettre en cache entre les `jobs`. 
+`cache` est utilisé pour spécifier une liste de fichiers et de répertoires à mettre en cache entre les `jobs`. 
 Vous ne pouvez utiliser que les chemins situés dans l'espace de travail du projet.
 
 Si le `cache` est défini en dehors des `jobs`, cela signifie qu'il est défini globalement et que tous les `jobs` utiliseront cette définition.
@@ -47,6 +47,9 @@ test:
 </details>
 
 ## 2. Les artefacts
+
+`artefacts` est utilisé pour spécifier une liste de fichiers et de répertoires qui doivent être attachés au `job` après succès.
+Une fois le `job` terminé, les `artefacts` seront envoyés à GitLab et pourront être téléchargés dans l'interface utilisateur de GitLab.
 
 * Ajouter un job `dist` (stage `deploy`) construisant un `tar.gz` à partir du contenu de repertoire `build` (`tar zcvf dist/artifact.tar.gz build/`)
 * Déclarer le `tar.gz` comme artefact du build. Cet artefact doit :
