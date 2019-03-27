@@ -100,7 +100,7 @@ myRubyTest:
 </p> 
 
 <p>
-<img src="pipeline-params.png" height="200">
+<img src="pipeline-params.png" height="400">
 </p> 
 
 </p>
