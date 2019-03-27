@@ -123,7 +123,7 @@ Ces opérations peuvent être **globales** ou **spécifiques au job**.
 
 * Ajouter un `before_script` global dans la configuration (avec `echo` explicative)
 * Ajouter un `before_script` spécifique au job rattaché au stage `test`
-* Vérifiez pour chaque job quel pré-script a été finalement lancé.
+* Vérifiez pour chaque job quel pré-script a été finalement lancé
 * Que peut-on en déduire à propos de la priorité entre un `before_script` global et un `before_script` à l'intérieur d'un job ?
 
 <details>
@@ -168,7 +168,7 @@ Essayons de mettre cela en pratique via un simple `apt-get`
 * Créer 1 job
 * Executer la commande `tree` (n'oublier de l'installer dans `before_script`)
 
-<summary>Solution</summary>
+<details><summary>Solution</summary>
 <p>
 
 ```yaml
