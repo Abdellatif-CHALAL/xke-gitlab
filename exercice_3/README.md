@@ -175,4 +175,4 @@ test:2.5:
 </details>
 
     
-[< Previous](../exercice_2) | [Home](..) | [Next >](../exercice_4)
+[< Previous](../exercice_2) | [Home](../README.md) | [Next >](../exercice_4)
