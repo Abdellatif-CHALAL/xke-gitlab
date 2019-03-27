@@ -86,6 +86,9 @@ myRubyTest:
     - ruby -v
 ```
 
+</p>
+</details>
+
 * Utiliser le lanceur de pipeline manuel en redefinissant la variable `RUBY_IMAGE_TAG` avec `2.5-alpine`
 
 <details>
