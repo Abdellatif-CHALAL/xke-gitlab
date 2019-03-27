@@ -67,7 +67,7 @@ Nous allons essayer de faire un peu mieux en utilisant une variable de pipeline.
 
 * Ajouter la variable globale : `RUBY_IMAGE_TAG: alpine`
 * Utiliser cette variable dans la definition d'image  
-* Executer la commande `ruby -v`
+* Scripter la commande `ruby -v`
 
 <details>
 <summary>Solution</summary>
@@ -98,6 +98,8 @@ myRubyTest:
 <p>
 <img src="pipeline-run.png" height="200">
 </p> 
+
+... puis ...
 
 <p>
 <img src="pipeline-params.png" height="400">
