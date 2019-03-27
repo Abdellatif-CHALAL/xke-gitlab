@@ -1,6 +1,6 @@
 # Les basiques
 
-Dans cet exercice nous allons parcourir la syntaxe basique du fichier `gitlab-ci.yml`.
+Dans cet exercice nous allons utiliser la syntaxe basique du fichier `gitlab-ci.yml`.
 Nous utiliserons les notions de script, de job et de stage afin de construire un premier pipeline.
 
 > L'interface web de GitLab CI dispose d'un linter permettant de valider la syntaxe du fichier de configuration. 
@@ -43,6 +43,8 @@ stages:
   - deploy
 ```
 
+</p>
+</details>
 
 * Rattacher à chaque stage un job affichant le nom de job
 
