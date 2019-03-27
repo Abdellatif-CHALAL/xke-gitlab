@@ -1,8 +1,7 @@
 # Utilisation de Docker
 
 Dans cet exercice nous allons voir comment un job peut être exécuté au sein d'une image Docker. 
-Nous en profiterons pour rajouter des variables dans la configuration du pipeline, 
-variables qui seront ensuite utilisées dans l'image.
+Nous en profiterons pour rajouter des variables dans la configuration du pipeline qui seront ensuite utilisées dans l'image.
 
 * [Documentation](https://docs.gitlab.com/ee/ci/docker/README.html)
 
@@ -16,9 +15,6 @@ variables qui seront ensuite utilisées dans l'image.
 <p>
 
 ```yaml
-stages:
-  - test
-
 image: ruby:alpine
     
 myRubyTest:
@@ -38,9 +34,9 @@ sur des versions différentes (`python`, `java`, `node` pour ne pas les citer)
 
 Pour illuster cet exercice nous utiliserons l'image Docker de [Ruby](https://hub.docker.com/_/ruby) `ruby:<version>-alpine`
  
-* Créer un pipeline composé de deux jobs. 
+* Créer un pipeline composé de deux jobs 
 * Utiliser deux images distinctes pour chaque job
-* Les jobs affichent la version courante de Ruby.
+* Les jobs affichent la version courante de Ruby
 * Comment ont été lancés les jobs dans le pipeline ?
 
 <details>
@@ -48,9 +44,6 @@ Pour illuster cet exercice nous utiliserons l'image Docker de [Ruby](https://hub
 <p>
 
 ```yaml
-stages:
-  - test
-
 myRubyTest:2.6:
   stage: test
   image: ruby:2.6-alpine
@@ -72,10 +65,9 @@ myRubyTest:2.5:
 Vous l'aurez remarqué, la précédente configuration oblige créer un nouveau job pour chaque version de Ruby.
 Nous allons essayer de faire un peu mieux en utilisant une variable de pipeline.
 
-* Modifier le pipeline afin que le tag de l'image soit paramétrable.
-* Ajouter une valeur par défaut pour le tag.
-* Utiliser le lanceur de pipeline manuel dans lequel une variable sera injectée.
-* Vérifier le résultat de la commande `ruby -v`
+* Ajouter la variable globale : `RUBY_IMAGE_TAG: alpine`
+* Utiliser cette variable dans la definition d'image  
+* Executer la commande `ruby -v`
 
 <details>
 <summary>Solution</summary>
@@ -85,9 +77,6 @@ Nous allons essayer de faire un peu mieux en utilisant une variable de pipeline.
 variables:
   RUBY_IMAGE_TAG: alpine
 
-stages:
-  - test
-
 myRubyTest:
   stage: test
   variables:
@@ -96,6 +85,20 @@ myRubyTest:
   script:
     - ruby -v
 ```
+
+* Utiliser le lanceur de pipeline manuel en redefinissant la variable `RUBY_IMAGE_TAG` avec `2.5-alpine`
+
+<details>
+<summary>Solution</summary>
+<p>
+
+<p>
+<img src="pipeline-run.png" height="200">
+</p> 
+
+<p>
+<img src="pipeline-params.png" height="200">
+</p> 
 
 </p>
 </details>
