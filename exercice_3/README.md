@@ -1,19 +1,23 @@
 # Utilisation du cache et des artefacts
 
-Dans cet exercice nous allons chercher à partager certains éléments entre les jobs.
-Pour compléter ces notions de cache et d'artefacts nous 
+Dans cet exercice nous allons partager certains éléments entre les jobs à l'aide des notions de cache et d'artefacts. 
 
-## 1. Utiliser le cache
+## 1. Le cache
 
-* Créer un pipeline constitué de deux jobs:
-    * Job `build`: Créer un fichier `build-info.txt` dans un répertoire `build`.
-    * Job `test`: Vérifier l'existence du fichier.
-    * Ne pas définir de cache pour le moment.
+`Cache` est utilisé pour spécifier une liste de fichiers et de répertoires à mettre en cache entre les `jobs`. 
+Vous ne pouvez utiliser que les chemins situés dans l'espace de travail du projet.
+
+Si le `cache` est défini en dehors des `jobs`, cela signifie qu'il est défini globalement et que tous les `jobs` utiliseront cette définition.
+
+* Créer un pipeline constitué de deux jobs :
+    * Sans définir le cache pour le moment
+    * Définir un job `build` - y scripter la création d'un fichier `build-info.txt` dans un répertoire `build`
+    * Définir un job `test` - y verifier l'existence de ce fichier (`if [ ! -f build/build-info.txt ]; then exit 1; fi`)
 * Le fichier produit par le job `build` est-il disponible dans le job `test` ?
-* Déclarer un cache
-    * Se basant sur le contenu du répertoire `build`.
-    * Disposant d'un clé pour isoler le cache entre les pipelines
-* Vérifier que le pipeline n'échoue plus.
+* Déclarer un cache :
+    * Path `./build/`
+    * Optional : utiliser un `key` de cache pour l'isoler entre les pipelines
+* Vérifier que le pipeline passe "au vert"
 
 <details>
 <summary>Solution</summary>
@@ -24,10 +28,6 @@ cache:
   key: "$CI_COMMIT_REF_SLUG"
   paths:
     - ./build/
-
-stages:
-  - build
-  - test
 
 build:
   stage: build
@@ -46,15 +46,13 @@ test:
 </p>
 </details>
 
-## 2. Utiliser les artefacts
+## 2. Les artefacts
 
-* Ajouter un job `dist` (stage `deploy`) construisant un `tar.gz` à partir du contenu de `build`.
-    * `tar zcvf dist/artifact.tar.gz build/`
-* Déclarer le `tar.gz` comme artefact du build.
-* L'artefact doit:
-    * Etre disponible dans le répertoire `dist`.
-    * Avoir une durée de vie à 5 minutes.
-    * Etre téléchargable dans un zip nommé `<projet>-<branche>-<sha1 du commit>` (cf. les variables d'environement d'un pipeline).
+* Ajouter un job `dist` (stage `deploy`) construisant un `tar.gz` à partir du contenu de repertoire `build` (`tar zcvf dist/artifact.tar.gz build/`)
+* Déclarer le `tar.gz` comme artefact du build. Cet artefact doit :
+    * Etre disponible dans le répertoire `dist`
+    * Avoir une durée de vie à `5 minutes`
+    * Etre téléchargable dans un zip nommé `<projet>-<branche>-<sha1 du commit>` (cf. les variables d'environement d'un pipeline)
 
 <details>
 <summary>Solution</summary>
@@ -97,6 +95,10 @@ dist:
       - dist/
     expire_in: 5 mins
 ```
+
+<p>
+<img src="artefact.png" height="200">
+</p> 
 
 </p>
 </details>
