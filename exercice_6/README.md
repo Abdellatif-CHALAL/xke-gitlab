@@ -21,4 +21,4 @@ Il s'agit de la fonctionnalité _GitLab Pages_.
 </p>
 </details>
 
-[< Previous](../exercice_5/README.md) | [Home](../README.md) |
+[< Previous](../exercice_5) | [Home](..) |

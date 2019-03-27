@@ -37,7 +37,7 @@ Pour illuster cet exercice nous utiliserons l'image Docker de [Ruby](https://hub
 * Créer un pipeline composé de deux jobs 
 * Utiliser deux images distinctes pour chaque job
 * Les jobs affichent la version courante de Ruby
-* Comment ont été lancés les jobs dans le pipeline ?
+* Comment ont été lançés les jobs dans le pipeline ?
 
 <details>
 <summary>Solution</summary>
@@ -62,7 +62,7 @@ myRubyTest:2.5:
 
 ## 3. Variables de pipeline
 
-Vous l'aurez remarqué, la précédente configuration oblige créer un nouveau job pour chaque version de Ruby.
+Vous l'aurez remarqué, la précédente configuration oblige de créer un nouveau job pour chaque version de Ruby.
 Nous allons essayer de faire un peu mieux en utilisant une variable de pipeline.
 
 * Ajouter la variable globale : `RUBY_IMAGE_TAG: alpine`
@@ -89,7 +89,7 @@ myRubyTest:
 </p>
 </details>
 
-* Utiliser le lanceur de pipeline manuel en redefinissant la variable `RUBY_IMAGE_TAG` avec `2.5-alpine`
+* Utiliser le lanceur de pipeline manuel en redéfinissant la variable `RUBY_IMAGE_TAG` avec `2.5-alpine`
 
 <details>
 <summary>Solution</summary>
@@ -108,4 +108,4 @@ myRubyTest:
 </p>
 </details>
 
-[< Previous](../exercice_1/README.md) | [Home](../README.md) | [Next >](../exercice_3/README.md)
+[< Previous](../exercice_1) | [Home](..) | [Next >](../exercice_3)

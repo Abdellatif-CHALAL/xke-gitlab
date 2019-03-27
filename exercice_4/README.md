@@ -51,4 +51,4 @@ connect:
 
 ## 2.
     
-[< Previous](../exercice_3/README.md) | [Home](../README.md) | [Next >](../exercice_5/README.md)
+[< Previous](../exercice_3) | [Home](..) | [Next >](../exercice_5)

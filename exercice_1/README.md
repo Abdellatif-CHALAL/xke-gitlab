@@ -4,7 +4,7 @@ Dans cet exercice nous allons utiliser la syntaxe basique du fichier `gitlab-ci.
 Nous utiliserons les notions de script, de job et de stage afin de construire un premier pipeline.
 
 > L'interface web de GitLab CI dispose d'un linter permettant de valider la syntaxe du fichier de configuration. 
-> Le linter est disponible `<your_project_namespace>/-/ci/lint`
+> Le linter est disponible sous `<your_project_namespace>/-/ci/lint`
  
 ## 1. Utiliser les jobs et les stages
     
@@ -26,7 +26,7 @@ myJob:
 <details><summary>Solution</summary>
 <p>
 
-Le stage par defaut est `test`
+> Le stage par defaut est `test`
 
 </p>
 </details>
@@ -76,7 +76,7 @@ myDeployJob:
 </p>
 </details>
 
-* Ajouter un job supplementaire (lancement des tests IT par exemple) qui tourne en parallèle avec l'autre job de test existant
+* Ajouter un job supplémentaire (lancement des tests IT par exemple) qui tournera en parallèle du précédent job de test
 
 <details><summary>Solution</summary>
 <p>
@@ -100,7 +100,7 @@ myTestJob:
 myTestItJob:
   stage: test
   script:
-    - echo "Running the test script"
+    - echo "Running the integration test script"
 
 myDeployJob:
   stage: deploy
@@ -123,8 +123,8 @@ Ces opérations peuvent être **globales** ou **spécifiques au job**.
 
 * Ajouter un `before_script` global dans la configuration (avec `echo` explicative)
 * Ajouter un `before_script` spécifique au job rattaché au stage `test`
-* Vérifiez pour chaque job quel pré-script a été finalement lancé
-* Que peut-on en déduire à propos de la priorité entre un `before_script` global et un `before_script` à l'intérieur d'un job ?
+* Vérifiez pour chaque job quel `before_script` a été finalement lancé
+* Que peut-on en déduire de la priorité entre un `before_script` global et un `before_script` à l'intérieur d'un job ?
 
 <details>
 <summary>Solution</summary>
@@ -162,11 +162,11 @@ myDeployJob:
 ## 3. Un exemple plus concret
 
 Dans les faits un `before_script` est surtout utile pour vérifier les pré-requis au lancement d'un job et le faire échouer si besoin.
-Essayons de mettre cela en pratique via un simple `apt-get`
+Essayons de mettre cela en pratique via un simple `apt-get`.
 
-* Reinitiliser le fichier de pipeline
-* Créer 1 job
-* Executer la commande `tree` (n'oublier de l'installer dans `before_script`)
+* Reinitialiser le fichier de pipeline
+* Créer un job
+* Exécuter la commande `tree` (ne pas oublier de d'installer le paquet dans le `before_script`)
 
 <details><summary>Solution</summary>
 <p>
@@ -183,4 +183,4 @@ build:
 </details>
 
 
-[< Previous](../exercice_0/README.md) | [Home](../README.md) | [Next >](../exercice_2/README.md)
+[< Previous](../exercice_0) | [Home](..) | [Next >](../exercice_2)
