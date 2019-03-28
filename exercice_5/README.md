@@ -2,18 +2,18 @@
 
 Le but de l'exercise est d'executer un pipeline à partir de l'autre pipeline.
 
-* Ici, nous lançerons automatiquement le pipeline `deploy` à partir de pipeline de `build` pour simuler un déployement continu sur l'environement de *developement* _(Attention : seule la branche master sera concernée)_  
-* Or, il n'est pas toujours opportun de faire du déployement continu vers l'environnement de *production*, nous souhaitons pouvoir s'arrêter à la fin de la *livraison continue* 
+* Ici, nous lançerons automatiquement le pipeline `deploy` à partir de pipeline de `build` pour simuler un déploiement continu sur l'environnement de *developement* _(Attention : seule la branche master sera concernée)_.  
+* Néanmoins, il n'est pas toujours opportun de faire du déployement continu vers l'environnement de *production*, nous souhaitons pouvoir décider d' arrêter à la fin de la *livraison continue*. 
 * Pour ce faire, nous ajouterons la possibilité de lancer le même pipeline `deploy` de façon *manuelle* pour le déploiement vers l'environnement de *production* 
 
 
 ## 1. Lancement d'un pipeline `deploy` à partir de pipeline `build`
 
-* Créer 2 projets GitLab (nommés `myBuildPipeline` et `myDeployPipeline` par exemple) avec leurs fichiers `.gitlab-ci.yml` respectifs.
-* Créer un job `myBuild` dans le pipeline `myBuildPipeline` attaché à un stage `build`
-* Créer un job `myDeploy:dev` dans le pipeline `myBuildPipeline` attaché à un stage `deploy`
-* Preciser que le job `myDeploy:dev` ne se lance que sur la branche `master` (utiliser l'instruction `only:`)
-* Dans le projet `myDeployPipeline` lancer le pipeline ``myDeploy:dev`` (see [documentation](https://docs.gitlab.com/ee/ci/triggers/README.html#ci-job-token))
+* Créer deux projets GitLab (nommés `myBuildPipeline` et `myDeployPipeline` par exemple) avec leurs fichiers `.gitlab-ci.yml` respectifs.
+* Créer un job `myBuild` dans le pipeline de `myBuildPipeline`, attaché à un stage `build`.
+* Créer un job `myDeploy:dev` dans le pipeline de `myBuildPipeline`, attaché à un stage `deploy`.
+* Préciser que le job `myDeploy:dev` ne se lance que sur la branche `master` (utiliser l'instruction `only:`).
+* Dans le projet `myDeployPipeline` lancer le pipeline `myDeploy:dev` (see [documentation](https://docs.gitlab.com/ce/ci/triggers/README.html#ci-job-token))
     *. Il est nécessaire de trouver l'ID de projet `myDeployPipeline` pour pouvoir le déclencher par API.
 
 <p>

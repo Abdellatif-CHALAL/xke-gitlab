@@ -1,9 +1,9 @@
 # Utilisation de Docker
 
 Dans cet exercice nous allons voir comment un job peut être exécuté au sein d'une image Docker. 
-Nous en profiterons pour rajouter des variables dans la configuration du pipeline qui seront ensuite utilisées dans l'image.
+Nous en profiterons pour rajouter des variables dans la configuration du pipeline qui seront ensuite utilisées dans le container.
 
-* [Documentation](https://docs.gitlab.com/ee/ci/docker/README.html)
+* [Documentation](https://docs.gitlab.com/ce/ci/docker/README.html)
 
 ## 1. Définir une image Docker
     
@@ -34,10 +34,9 @@ sur des versions différentes (`python`, `java`, `node` pour ne pas les citer)
 
 Pour illuster cet exercice nous utiliserons l'image Docker de [Ruby](https://hub.docker.com/_/ruby) `ruby:<version>-alpine`
  
-* Créer un pipeline composé de deux jobs 
-* Utiliser deux images distinctes pour chaque job
-* Les jobs affichent la version courante de Ruby
-* Comment ont été lançés les jobs dans le pipeline ?
+* Créer un pipeline composé de deux jobs.
+* Utiliser une image différente pour chacun des jobs.
+* Les jobs devront afficher la version courante de Ruby.
 
 <details>
 <summary>Solution</summary>
@@ -65,9 +64,9 @@ myRubyTest:2.5:
 Vous l'aurez remarqué, la précédente configuration oblige de créer un nouveau job pour chaque version de Ruby.
 Nous allons essayer de faire un peu mieux en utilisant une variable de pipeline.
 
-* Ajouter la variable globale : `RUBY_IMAGE_TAG: alpine`
-* Utiliser cette variable dans la definition d'image  
-* Scripter la commande `ruby -v`
+* Ajouter la variable globale : `RUBY_IMAGE_TAG: alpine`.
+* Utiliser cette variable dans la definition d'image.
+* Scripter la commande `ruby -v`.
 
 <details>
 <summary>Solution</summary>
@@ -89,7 +88,7 @@ myRubyTest:
 </p>
 </details>
 
-* Utiliser le lanceur de pipeline manuel en redéfinissant la variable `RUBY_IMAGE_TAG` avec `2.5-alpine`
+* Utiliser le lanceur de pipeline manuel en surchargeant la variable `RUBY_IMAGE_TAG`, valeur `2.5-alpine`.
 
 <details>
 <summary>Solution</summary>

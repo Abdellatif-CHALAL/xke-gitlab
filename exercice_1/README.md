@@ -1,6 +1,6 @@
 # Les basiques
 
-Dans cet exercice nous allons utiliser la syntaxe basique du fichier `gitlab-ci.yml`.
+Dans cet exercice nous allons utiliser la syntaxe basique du fichier `.gitlab-ci.yml`.
 Nous utiliserons les notions de script, de job et de stage afin de construire un premier pipeline.
 
 > L'interface web de GitLab CI dispose d'un linter permettant de valider la syntaxe du fichier de configuration. 
@@ -46,7 +46,7 @@ stages:
 </p>
 </details>
 
-* Rattacher à chaque stage un job affichant le nom de job
+* Rattacher à chaque stage un job affichant le nom de job.
 
 <details><summary>Solution</summary>
 <p>
@@ -76,7 +76,7 @@ myDeployJob:
 </p>
 </details>
 
-* Ajouter un job supplémentaire (lancement des tests IT par exemple) qui tournera en parallèle du précédent job de test
+* Ajouter un job supplémentaire (lancement des tests IT par exemple) qui tournera parallèlement au premier job de test.
 
 <details><summary>Solution</summary>
 <p>
@@ -121,9 +121,9 @@ myDeployJob:
 A l'entrée ou à la sortie d'un job il est possible de réaliser des opérations supplémentaires selon les besoins.
 Ces opérations peuvent être **globales** ou **spécifiques au job**.
 
-* Ajouter un `before_script` global dans la configuration (avec `echo` explicative)
-* Ajouter un `before_script` spécifique au job rattaché au stage `test`
-* Vérifiez pour chaque job quel `before_script` a été finalement lancé
+* Ajouter un `before_script` global dans la configuration. Un simple `echo "Running the default before script"` suffira. 
+* Ajouter un `before_script` spécifique au job rattaché au stage `test`.
+* Vérifiez pour chaque job quel `before_script` a été finalement lancé.
 * Que peut-on en déduire de la priorité entre un `before_script` global et un `before_script` à l'intérieur d'un job ?
 
 <details>
@@ -156,17 +156,18 @@ myDeployJob:
   script:
     - echo "Running the deploy script"
 ```
+
 </p>
 </details>
 
 ## 3. Un exemple plus concret
 
-Dans les faits un `before_script` est surtout utile pour vérifier les pré-requis au lancement d'un job et le faire échouer si besoin.
+Dans les faits un `before_script` est surtout utile pour vérifier les pré-requis d'un job et le faire échouer si besoin.
 Essayons de mettre cela en pratique via un simple `apt-get`.
 
-* Reinitialiser le fichier de pipeline
-* Créer un job
-* Exécuter la commande `tree` (ne pas oublier de d'installer le paquet dans le `before_script`)
+* Reinitialiser le fichier de pipeline.
+* Créer nouveau un job. Vous pouvez omettre de définir les `stages`.
+* Exécuter la commande `tree`. Ne pas oublier de d'installer le paquet lors du `before_script`.
 
 <details><summary>Solution</summary>
 <p>
@@ -179,6 +180,7 @@ build:
     script:
         - tree
 ```
+
 </p>
 </details>
 

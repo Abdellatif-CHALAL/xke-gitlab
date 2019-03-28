@@ -7,17 +7,17 @@ Dans cet exercice nous allons partager certains éléments entre les jobs à l'a
 `cache` est utilisé pour spécifier une liste de fichiers et de répertoires à mettre en cache entre les `jobs`. 
 Seuls les chemins situés dans l'espace de travail du projet sont accessibles.
 
-Si le `cache` est défini en dehors des `jobs`, cela signifie qu'il est défini globalement et que tous les `jobs` utiliseront cette définition.
+Si le `cache` est défini en dehors des `jobs`, cela signifie qu'il est global et que tous les `jobs` utiliseront cette définition.
 
 * Créer un pipeline constitué de deux jobs :
-    * Sans définir le cache pour le moment
-    * Définir un job `build` - y scripter la création d'un fichier `build-info.txt` dans un répertoire `build`
-    * Définir un job `test` - y verifier l'existence de ce fichier (`if [ ! -f build/build-info.txt ]; then exit 1; fi`)
+    * Sans définir le cache pour le moment.
+    * Définir un job `build` et scripter la création d'un fichier `build-info.txt` dans un répertoire `build`.
+    * Définir un job `test` et vérifier l'existence de ce fichier (`if [ ! -f build/build-info.txt ]; then exit 1; fi`).
 * Le fichier produit par le job `build` est-il disponible dans le job `test` ?
 * Déclarer un cache :
-    * Path `./build/`
-    * Optional : utiliser une `key` de cache pour l'isoler entre les pipelines
-* Vérifier que le pipeline passe au vert
+    * Path `./build/`.
+    * Optional : utiliser une `key` de cache pour l'isoler entre les pipelines.
+* Vérifier que le pipeline passe au vert.
 
 <details>
 <summary>Solution</summary>
@@ -48,13 +48,15 @@ test:
 
 ## 2. Les artefacts
 
-`artefacts` est utilisé pour spécifier une liste de fichiers et de répertoires qui seront attachés au `job` en cas de succès.
-Une fois le `job` terminé, les `artefacts` seront envoyés à GitLab et pourront être téléchargés dans l'interface utilisateur.
+`artefacts` est la commande utilisée pour spécifier une liste de fichiers et de répertoires qui seront attachés au `job` en cas de succès.
+Une fois le `job` terminé, les `artefacts` seront envoyés à GitLab et pourront être téléchargés depuis l'interface utilisateur.
 
-* Ajouter un job `dist` (stage `deploy`) construisant un `tar.gz` basé sur le contenu de répertoire `build` (`tar zcvf dist/artifact.tar.gz build/`)
-* Déclarer le `tar.gz` comme artefact du build. Cet artefact doit :
-    * Etre disponible dans le répertoire `dist`
-    * Avoir une durée de vie de `5 minutes`
+* Ajouter un job `dist` (stage `deploy`) construisant un `tar.gz` basé sur le contenu de répertoire `build`
+> `tar zcvf dist/artifact.tar.gz build/`
+* Déclarer le `tar.gz` comme artefact du build. 
+* Cet artefact doit :
+    * Etre disponible dans le répertoire `dist`.
+    * Avoir une durée de vie de `5 minutes`.
     * Etre téléchargable dans un zip nommé `<projet>-<branche>-<sha1 du commit>` (cf. les variables d'environnement d'un pipeline)
 
 <details>
@@ -110,12 +112,12 @@ dist:
 
 En s'inspirant du pipeline de l'exercice [2.2](../exercice_2) créer un pipeline contenant :
 * Deux jobs de build
-    * Produisant chacun un fichier texte contenant la sortie de la commande `ruby -v`
+    * Produisant chacun un fichier texte contenant le résultat de la commande `ruby -v`
     * Exécutés avec deux versions différentes de l'image Ruby 
 * Deux jobs de test
     * Affichant le contenu du fichier texte construit pendant le job de build
 
-Au final le graphe de dépendance entre les jobs serait donc le suivant : 
+Au final le graphe de dépendance entre les jobs doit être le suivant : 
 
 >build:X -> test:X
 >
