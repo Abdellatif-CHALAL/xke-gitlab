@@ -17,14 +17,13 @@ Le but de l'exercise est d'executer un pipeline à partir de l'autre pipeline.
         * Limiter le lancement du job à la branche `master` (utiliser l'instruction `only:`).
 * Dans le projet `myDeployPipeline` : 
     * Créer un job `myDeploy:dev`. 
+    * Créer un nouveau trigger (see [documentation](https://docs.gitlab.com/ce/ci/triggers/README.html#ci-job-token))
     * Récupérer l'ID du projet. Cet ID sera utilisé plus tard par le trigger.
 
 <p>
 <img src="project-id.png" height="100">
 </p> 
 
-    *. Créer un nouveau trigger (see [documentation](https://docs.gitlab.com/ce/ci/triggers/README.html#ci-job-token))
-    
 <p>
 <img src="ci-cd-settings.png" height="200">
 </p> 
@@ -33,7 +32,7 @@ Le but de l'exercise est d'executer un pipeline à partir de l'autre pipeline.
 <img src="trigger.png" height="300">
 </p> 
 
-    * Utiliser les instructions pour compléter le job `myDeployTrigger:dev` du projet `myBuildPipeline`
+* Utiliser les instructions pour compléter le job `myDeployTrigger:dev` du projet `myBuildPipeline`
 
 
 <details>
