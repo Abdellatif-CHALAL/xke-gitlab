@@ -10,17 +10,20 @@ Le but de l'exercise est d'executer un pipeline à partir de l'autre pipeline.
 ## 1. Lancement d'un pipeline `deploy` à partir de pipeline `build`
 
 * Créer deux projets GitLab (nommés `myBuildPipeline` et `myDeployPipeline` par exemple) avec leurs fichiers `.gitlab-ci.yml` respectifs.
-* Créer un job `myBuild` dans le pipeline de `myBuildPipeline`, attaché à un stage `build`.
-* Créer un job `myDeploy:dev` dans le pipeline de `myBuildPipeline`, attaché à un stage `deploy`.
-* Préciser que le job `myDeploy:dev` ne se lance que sur la branche `master` (utiliser l'instruction `only:`).
-* Dans le projet `myDeployPipeline` lancer le pipeline `myDeploy:dev` (see [documentation](https://docs.gitlab.com/ce/ci/triggers/README.html#ci-job-token))
-    *. Il est nécessaire de trouver l'ID de projet `myDeployPipeline` pour pouvoir le déclencher par API.
+* Dans `myBuildPipeline` : 
+    * Créer un job `myBuild`, attaché à un stage `build`.
+    * Créer un job `myDeployTrigger:dev`, attaché le job au stage `deploy`.
+        * Utiliser l'image `byrnedo/alpine-curl` pour disposer de `curl`.
+        * Limiter le lancement du job à la branche `master` (utiliser l'instruction `only:`).
+* Dans le projet `myDeployPipeline` : 
+    * Créer un job `myDeploy:dev`. 
+    * Récupérer l'ID du projet. Cet ID sera utilisé plus tard par le trigger.
 
 <p>
 <img src="project-id.png" height="100">
 </p> 
 
-    *. Puis dans le pipeline `myDeployPipeline` créer un nouveau trigger :
+    *. Créer un nouveau trigger (see [documentation](https://docs.gitlab.com/ce/ci/triggers/README.html#ci-job-token))
     
 <p>
 <img src="ci-cd-settings.png" height="200">
@@ -30,7 +33,7 @@ Le but de l'exercise est d'executer un pipeline à partir de l'autre pipeline.
 <img src="trigger.png" height="300">
 </p> 
 
-    * Utiliser les instructions pour decléncher le pipeline
+    * Utiliser les instructions pour compléter le job `myDeployTrigger:dev` du projet `myBuildPipeline`
 
 
 <details>
@@ -44,13 +47,21 @@ myBuild:
     script:
         - echo "Build"
     
-myDeploy:dev:
+myDeployTrigger:dev:
     stage: deploy
     image: byrnedo/alpine-curl
     script:   
         - curl --request POST --form "token=$CI_JOB_TOKEN" --form ref=master https://gitlab.sab2i-cloud.com/api/v4/projects/<myDeployPipeline_project_id>/trigger/pipeline
     only:
         - master
+```
+
+```yaml
+
+myDeploy:dev:
+    stage: deploy
+    script:
+        - echo "Deploy"
 ```
 
 </p>
