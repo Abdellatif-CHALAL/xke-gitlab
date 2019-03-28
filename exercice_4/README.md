@@ -55,9 +55,9 @@ connect:
 
 ## 2. Utilisation des variables dans les services
 
-Les variables déclarés dans `.gitlab-ci.yml` sont automatiquement passés dans les services.
+Les variables déclarées dans `.gitlab-ci.yml` sont automatiquement passées dans les services.
 
-* Modifier le lancement de service precedente en lancant la base `mongodb` en initialisant l'utilisateur `root` :
+* Modifier le lancement du service précédent en initialisant l'utilisateur `root` de la base `mongodb` :
 
 ```
 MONGO_INITDB_ROOT_USERNAME: root
