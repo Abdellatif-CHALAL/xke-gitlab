@@ -1,10 +1,10 @@
 # Lancement d'un pipeline à partir de pipeline
 
-Le but de l'exercise est d'executer un pipeline à partir de l'autre pipeline.
+Le but de cet exercise sera de montrer comment déclencher un pipeline à partir d'un autre pipeline.
 
-* Ici, nous lançerons automatiquement le pipeline `deploy` à partir de pipeline de `build` pour simuler un déploiement continu sur l'environnement de *developement* _(Attention : seule la branche master sera concernée)_.  
-* Néanmoins, il n'est pas toujours opportun de faire du déployement continu vers l'environnement de *production*, nous souhaitons pouvoir décider d' arrêter à la fin de la *livraison continue*. 
-* Pour ce faire, nous ajouterons la possibilité de lancer le même pipeline `deploy` de façon *manuelle* pour le déploiement vers l'environnement de *production* 
+* Ici, nous lançerons automatiquement le pipeline `deploy` à partir du pipeline `build` afin de simuler un déploiement continu sur l'environnement de *dévelopement* _(Attention : seule la branche master sera concernée)_.  
+* Néanmoins, déclencher un déployement continu dans l'environnement de *production* n'est pas forcément voulu et nous souhaiterions donc pouvoir nous arrêter à la fin de la *livraison continue*. 
+* Pour ce faire, nous ajouterons la possibilité de lancer *manuellement* le pipeline `deploy` lorsqu' il s'agira de l' environnement de *production* 
 
 
 ## 1. Lancement d'un pipeline `deploy` à partir de pipeline `build`
@@ -50,7 +50,7 @@ myDeployTrigger:dev:
     stage: deploy
     image: byrnedo/alpine-curl
     script:   
-        - curl --request POST --form "token=$CI_JOB_TOKEN" --form ref=master https://gitlab.sab2i-cloud.com/api/v4/projects/<myDeployPipeline_project_id>/trigger/pipeline
+        - curl --request POST --form "token=$CI_JOB_TOKEN" --form ref=master https://gitlab.com/api/v4/projects/<myDeployPipeline_project_id>/trigger/pipeline
     only:
         - master
 ```

@@ -1,18 +1,19 @@
 # Services
 
-Dans certaines situations il est utile de disposer d'un ou plusieurs conteneurs accessibles 
-par tous les jobs, tout au long du pipeline. Notamment pour disposer de "backing services" pour les tests d'intégration (bdd, redis, ...)
+Dans certains cas initialiser des resources est coûteux. 
+Il est alors utile de mutualiser et de disposer de "backing services" comme ceux requis pour les tests d'intégration (bdd, redis, ...) par exemple.
 
-Les `services` sont justement là pour répondre à cette problématique.
-Cette commande permet en effet de déployer un ou plusieurs conteneurs linkés (au sens docker du terme) au conteneur du job en cours. 
+Dans Gitlab CI, les `services` permettent justement de créer des conteneurs mutualisés. 
+Cette commande permet en effet de déployer un ou plusieurs conteneurs linkés (au sens docker du terme) au conteneur du job en cours.
+Ces conteneurs deviennent alors accessibles à tous les jobs, tout au long du pipeline.
 
 ## Caveat: Utilisation des services avec un *runner Kubernetes*
 
-Avoir recours à des services dans un pipeline exécuté avec un runner Kubernetes impose certaines limitations.
-* Les alias ne sont pas utilisables, on ne peut donc pas définir plusieurs services identiques
+Avoir recours à des services dans un pipeline géré par un runner Kubernetes impose certaines limitations.
+* Les `alias` ne sont pas utilisables, on ne peut donc pas définir plusieurs services avec la même image
 * Accéder au service ne pourra se faire que sur `localhost` ou sur `127.0.0.1` car le runner ne déploie qu'un unique pod.
 
-Ces limitations sont à connaître lorsqu'il s'agit de rattacher un runner à votre pipeline car elles obligent à adapter votre code.
+Ces limitations sont à connaître lorsqu'il s'agit de rattacher un runner à son pipeline car elles obligent à adapter votre code.
 
 ## 1. Déclarer un service dans un pipeline
 
@@ -61,5 +62,25 @@ Les variables déclarées dans le fichier `.gitlab-ci.yml` sont automatiquement 
 MONGO_INITDB_ROOT_USERNAME: root
 MONGO_INITDB_ROOT_PASSWORD: example
 ```
-    
+
+* Vérifier qu' il faut à présent donner cet utilisateur au client mongo
+
+<details>
+<summary>Solution</summary>
+<p>
+
+```yaml
+services:
+  - mongo
+
+connect:
+  image: 
+    name: mongo
+    entrypoint: ["/bin/sh"] 
+  script:
+    - mongo --host 127.0.0.1 --user --password --eval "db.adminCommand('listDatabases')"
+```
+
+</p>
+</details>
 [< Previous](../exercice_3) | [Home](..) | [Next >](../exercice_5)

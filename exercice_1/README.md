@@ -165,7 +165,7 @@ myDeployJob:
 Dans les faits un `before_script` est surtout utile pour vérifier les pré-requis d'un job et le faire échouer si besoin.
 Essayons de mettre cela en pratique via un simple `apt-get`.
 
-* Reinitialiser le fichier de pipeline.
+* Réinitialiser le fichier de pipeline.
 * Créer nouveau un job. Vous pouvez omettre de définir les `stages`.
 * Exécuter la commande `tree`. Ne pas oublier de d'installer le paquet lors du `before_script`.
 

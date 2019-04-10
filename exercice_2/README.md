@@ -5,7 +5,7 @@ Nous en profiterons pour rajouter des variables dans la configuration du pipelin
 
 * [Documentation](https://docs.gitlab.com/ce/ci/docker/README.html)
 
-## 1. Définir une image Docker
+## 1. Définir une image Docker globale
     
 * Définir une image globale reposant sur l'image Docker `ruby:alpine`.  
 * Créer un job affichant la version de Ruby.
@@ -30,7 +30,7 @@ myRubyTest:
 
 Il est possible de faire cohabiter plusieurs versions d'une même image dans un pipeline.
 Une application directe est la possibilité de réaliser des jobs identiques mais exécutés 
-sur des versions différentes (`python`, `java`, `node` pour ne pas les citer)
+sur des versions différentes (On pense ici à `python`, `java` ou `node` pour ne pas les citer)
 
 Pour illuster cet exercice nous utiliserons l'image Docker de [Ruby](https://hub.docker.com/_/ruby) `ruby:<version>-alpine`
  
@@ -64,9 +64,11 @@ myRubyTest:2.5:
 Vous l'aurez remarqué, la précédente configuration oblige de créer un nouveau job pour chaque version de Ruby.
 Nous allons essayer de faire un peu mieux en utilisant une variable de pipeline.
 
-* Ajouter la variable globale : `RUBY_IMAGE_TAG: alpine`.
-* Utiliser cette variable dans la definition d'image.
-* Scripter la commande `ruby -v`.
+* Ajouter la variable globale `RUBY_IMAGE_TAG`, valeur par défaut `alpine` : `RUBY_IMAGE_TAG: alpine`. 
+* Dans le job :
+    * Utiliser `RUBY_IMAGE_TAG` pour construire la variable `RUBY_IMAGE`
+    * Utiliser `RUBY_IMAGE` pour la définition de l'image.
+    * Afficher le résultat de la commande `ruby -v`
 
 <details>
 <summary>Solution</summary>
@@ -88,7 +90,7 @@ myRubyTest:
 </p>
 </details>
 
-* Utiliser le lanceur de pipeline manuel en surchargeant la variable `RUBY_IMAGE_TAG`, valeur `2.5-alpine`.
+* Utiliser le lanceur de pipeline manuel en surchargeant la variable `RUBY_IMAGE_TAG` avec la valeur `2.5-alpine`.
 
 <details>
 <summary>Solution</summary>

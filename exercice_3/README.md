@@ -16,7 +16,7 @@ Si le `cache` est défini en dehors des `jobs`, cela signifie qu'il est global e
 * Le fichier produit par le job `build` est-il disponible dans le job `test` ?
 * Déclarer un cache :
     * Path `./build/`.
-    * Optional : utiliser une `key` de cache pour l'isoler entre les pipelines.
+    * Donner un identifiant (`key`) au cache afin de l'isoler entre deux lancements du pipeline.
 * Vérifier que le pipeline passe au vert.
 
 <details>
@@ -49,9 +49,9 @@ test:
 ## 2. Les artefacts
 
 `artefacts` est la commande utilisée pour spécifier une liste de fichiers et de répertoires qui seront attachés au `job` en cas de succès.
-Une fois le `job` terminé, les `artefacts` seront envoyés à GitLab et pourront être téléchargés depuis l'interface utilisateur.
+Une fois le `job` terminé, les `artefacts` seront envoyés à GitLab Server et pourront être téléchargés depuis l'interface web.
 
-* Ajouter un job `dist` (stage `deploy`) construisant un `tar.gz` basé sur le contenu de répertoire `build`
+* Ajouter un job `dist` (stage `deploy`) construisant un `tar.gz` avec le contenu de répertoire `build`
 > `tar zcvf dist/artifact.tar.gz build/`
 * Déclarer le `tar.gz` comme artefact du build. 
 * Cet artefact doit :
@@ -112,7 +112,7 @@ dist:
 
 En s'inspirant du pipeline de l'exercice [2.2](../exercice_2) créer un pipeline contenant :
 * Deux jobs de build
-    * Produisant chacun un fichier texte contenant le résultat de la commande `ruby -v`
+    * Produisant chacun un fichier texte avec pour contenu le résultat de la commande `ruby -v`
     * Exécutés avec deux versions différentes de l'image Ruby 
 * Deux jobs de test
     * Affichant le contenu du fichier texte construit pendant le job de build
