@@ -1,10 +1,10 @@
 # Utilisation du cache et des artefacts
 
-Dans cet exercice nous allons partager certains éléments entre les jobs à l'aide des notions de cache et d'artefacts. 
+Dans cet exercice nous allons partager des éléments entre les jobs à l'aide des notions de cache et d'artefacts. 
 
 ## 1. Le cache
 
-`cache` est utilisé pour spécifier une liste de fichiers et de répertoires à mettre en cache entre les `jobs`. 
+La commande `cache` est utilisée pour spécifier une liste de fichiers et de répertoires à mettre en cache entre les `jobs`. 
 Seuls les chemins situés dans l'espace de travail du projet sont accessibles.
 
 Si le `cache` est défini en dehors des `jobs`, cela signifie qu'il est global et que tous les `jobs` utiliseront cette définition.

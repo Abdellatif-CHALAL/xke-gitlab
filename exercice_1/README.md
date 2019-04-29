@@ -118,7 +118,7 @@ myDeployJob:
 
 ## 2. Les commandes avant et après un job
 
-A l'entrée ou à la sortie d'un job il est possible de réaliser des opérations supplémentaires selon les besoins.
+A l'entrée ou à la sortie d'un job il est possible de réaliser des opérations supplémentaires selon vos besoins.
 Ces opérations peuvent être **globales** ou **spécifiques au job**.
 
 * Ajouter un `before_script` global dans la configuration. Un simple `echo "Running the default before script"` suffira. 
@@ -163,11 +163,13 @@ myDeployJob:
 ## 3. Un exemple plus concret
 
 Dans les faits un `before_script` est surtout utile pour vérifier les pré-requis d'un job et le faire échouer si besoin.
-Essayons de mettre cela en pratique via un simple `apt-get`.
+Essayons de mettre cela en pratique en déclenchant un `apt-get` au lancement de notre job. 
+Notre but est d'installer la commande `tree` qui n'est pas une disponible par défaut.
 
 * Réinitialiser le fichier de pipeline.
 * Créer nouveau un job. Vous pouvez omettre de définir les `stages`.
-* Exécuter la commande `tree`. Ne pas oublier de d'installer le paquet lors du `before_script`.
+* Installer le paquet contenant la commande `tree` lors du `before_script`. Attention l'index des paquets ne sera peut-être pas à jour.
+* Exécuter la commande.
 
 <details><summary>Solution</summary>
 <p>

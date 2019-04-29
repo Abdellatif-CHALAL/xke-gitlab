@@ -1,24 +1,25 @@
 # GitLab Pages
 
 Tout comme son homologue GitHub il est possible de servir du contenu statique à partir d'un pipeline.
-Il s'agit de la fonctionnalité _GitLab Pages_.
+Pour ce faire nous allons utiliser _GitLab Pages_ ainsi que les exemples officiels proposés par GitLab.
+Nous n'avons pas fait d'exemple custom sur cette partie car :
+* Elle est assez simple
+* Vous devez être fatigués après 2 heures de hands-on
+* On manquait d'inspiration :-p
 
-[Documentation](https://docs.gitlab.com/ee/user/project/pages/index.html)
+[Documentation](https://docs.gitlab.com/ce/user/project/pages/index.html)
+[Templates de sites](https://gitlab.com/pages)
 
-## 1. Création d'un site statique
+## 1. Création d'un site statique basique
 
-* Créer un nouveau pipeline
-* Vérifier que le site est disponible
+Pour commencer nous allons déployer un projet contenant une seule page HTML dans un répertoire `public`.
 
-<details>
-<summary>Solution</summary>
-<p>
+* Créer un nouveau projet en s'inspirant de l'exemple disponible sur [https://gitlab.com/pages/plain-html](https://gitlab.com/pages/plain-html).
 
-```yaml
+## 2. Création d'un site statique via un générateur
 
-```
+Pour ce deuxième exemple nous allons nous servir de [Jekyll](https://jekyllrb.com/), un générateur de site statique.
 
-</p>
-</details>
+* Créer un nouveau projet en s'inspirant de l'exemple disponible sur [https://gitlab.com/pages/jekyll](https://gitlab.com/pages/jekyll)
 
 [< Previous](../exercice_5) | [Home](..) |

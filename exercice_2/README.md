@@ -1,13 +1,14 @@
 # Utilisation de Docker
 
 Dans cet exercice nous allons voir comment un job peut être exécuté au sein d'une image Docker. 
-Nous en profiterons pour rajouter des variables dans la configuration du pipeline qui seront ensuite utilisées dans le container.
+Nous en profiterons pour rajouter des variables dans la configuration du pipeline. 
+Puis nous les utiliserons directement dans le container.
 
 * [Documentation](https://docs.gitlab.com/ce/ci/docker/README.html)
 
 ## 1. Définir une image Docker globale
     
-* Définir une image globale reposant sur l'image Docker `ruby:alpine`.  
+* Définir une image **globale** reposant sur l'image Docker `ruby:alpine`.  
 * Créer un job affichant la version de Ruby.
 
 <details>
@@ -29,8 +30,9 @@ myRubyTest:
 ## 2. Jobs identiques, images différentes 
 
 Il est possible de faire cohabiter plusieurs versions d'une même image dans un pipeline.
-Une application directe est la possibilité de réaliser des jobs identiques mais exécutés 
-sur des versions différentes (On pense ici à `python`, `java` ou `node` pour ne pas les citer)
+Il devient ainsi possible de lancer des jobs identiques mais exécutés dans des configurations différentes. 
+Ceci peut s'avérer utile si votre application doit supporter plusieurs versions. 
+On pense ici à `python`, `java` ou encore `node` pour ne pas les citer.
 
 Pour illuster cet exercice nous utiliserons l'image Docker de [Ruby](https://hub.docker.com/_/ruby) `ruby:<version>-alpine`
  

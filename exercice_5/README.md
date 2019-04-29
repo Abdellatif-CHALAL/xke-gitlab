@@ -1,9 +1,9 @@
 # Lancement d'un pipeline à partir d'un autre pipeline
 
-Le but de cet exercise sera de montrer comment déclencher un pipeline à partir d'un autre pipeline.
+Le but de cet exercise sera de montrer comment déclencher un pipeline à partir d'un autre pipeline et donc de chaîner les pipelines.
 
 * Ici, nous lançerons automatiquement le pipeline `deploy` à partir du pipeline `build` afin de simuler un déploiement continu sur l'environnement de *dévelopement* _(Attention : seule la branche master sera concernée)_.  
-* Néanmoins, déclencher un déployement continu dans l'environnement de *production* n'est pas forcément voulu et nous souhaiterions donc pouvoir nous arrêter à la fin de la *livraison continue*. 
+* Néanmoins, dans l'environnement de *production*, nous souhaiterions pouvoir valider les artéfacts avant de continuer la livraison. 
 * Pour ce faire, nous ajouterons la possibilité de lancer *manuellement* le pipeline `deploy` lorsqu' il s'agira de l' environnement de *production* 
 
 ## 1. Lancement d'un pipeline `deploy` à partir de pipeline `build`
@@ -68,7 +68,7 @@ myDeploy:dev:
 ## 2. Enrichissement du trigger
 
 Un trigger ne sert pas uniquement à déclencher le lancement d'un autre pipeline. 
-Il peut être transmis avec d'autres variables qui seront ensuite utilisées dans le pipeline cible.
+*Il peut être transmis avec d'autres variables qui seront ensuite utilisées dans le pipeline cible.*
 
 * Modifier le pipeline du projet `myBuildPipeline`
     * Ajouter une variable `MAKE_PACKAGE` au trigger, valeur `true` (voir [documentation](https://docs.gitlab.com/ce/ci/triggers/#making-use-of-trigger-variables))
