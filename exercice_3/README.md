@@ -57,7 +57,7 @@ Une fois le `job` terminé, les `artefacts` seront envoyés à GitLab Server et 
 * Cet artefact doit :
     * Etre disponible dans le répertoire `dist`.
     * Avoir une durée de vie de `5 minutes`.
-    * Etre téléchargable dans un zip nommé `<projet>-<branche>-<sha1 du commit>` (cf. les variables d'environnement d'un pipeline)
+    * Etre téléchargable dans un zip nommé `<projet>-<branche>-<sha1 du commit>` (cf. les [variables d'environnement d'un pipeline](https://docs.gitlab.com/ce/ci/variables/predefined_variables.html))
 
 <details>
 <summary>Solution</summary>

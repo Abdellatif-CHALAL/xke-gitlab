@@ -164,7 +164,7 @@ myDeployJob:
 
 Dans les faits un `before_script` est surtout utile pour vérifier les pré-requis d'un job et le faire échouer si besoin.
 Essayons de mettre cela en pratique en déclenchant un `apt-get` au lancement de notre job. 
-Notre but est d'installer la commande `tree` qui n'est pas une disponible par défaut.
+Notre but est d'installer la commande `tree` qui n'est pas disponible par défaut.
 
 * Réinitialiser le fichier de pipeline.
 * Créer nouveau un job. Vous pouvez omettre de définir les `stages`.
