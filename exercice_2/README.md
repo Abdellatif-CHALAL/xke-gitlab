@@ -37,7 +37,7 @@ On pense ici à `python`, `java` ou encore `node` pour ne pas les citer.
 Pour illuster cet exercice nous utiliserons l'image Docker de [Ruby](https://hub.docker.com/_/ruby) `ruby:<version>-alpine`
  
 * Créer un pipeline composé de deux jobs.
-* Utiliser une image différente pour chacun des jobs.
+* Utiliser une image différente pour chacun des jobs (pae ex: `ruby:2.5-alpine` et `ruby:2.6-alpine`).
 * Les jobs devront afficher la version courante de Ruby.
 
 <details>
