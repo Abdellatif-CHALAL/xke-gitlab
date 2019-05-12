@@ -39,7 +39,7 @@ connect:
     name: mongo
     entrypoint: ["/bin/sh"] 
   script:
-    - mongo --host 127.0.0.1 --eval "db.adminCommand('listDatabases')"
+    - mongo --host mongo --eval "db.adminCommand('listDatabases')"
 ```
 
 </p>
@@ -71,7 +71,7 @@ connect:
     name: mongo
     entrypoint: ["/bin/sh"] 
   script:
-    - mongo --host 127.0.0.1 --user --password --eval "db.adminCommand('listDatabases')"
+    - mongo --host mongo --user --password --eval "db.adminCommand('listDatabases')"
 ```
 
 </p>
