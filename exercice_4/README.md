@@ -7,13 +7,6 @@ Dans Gitlab CI, les `services` permettent justement de créer des conteneurs mut
 Cette commande permet en effet de déployer un ou plusieurs conteneurs linkés (au sens docker du terme) au conteneur du job en cours.
 Ces conteneurs deviennent alors accessibles à tous les jobs, tout au long du pipeline.
 
-## Caveat: Utilisation des services avec un *runner Kubernetes*
-
-Avoir recours à des services dans un pipeline géré par un runner Kubernetes impose certaines limitations.
-* Les `alias` ne sont pas utilisables, on ne peut donc pas définir plusieurs services avec la même image
-* Accéder au service ne pourra se faire que sur `localhost` ou sur `127.0.0.1` car le runner ne déploie qu'un unique pod.
-
-Ces limitations sont à connaître lorsqu'il s'agit de rattacher un runner à son pipeline car elles obligent à adapter votre code.
 
 ## 1. Déclarer un service dans un pipeline
 
