@@ -15,7 +15,7 @@ Ici, le but est de lancer un backing service `mongodb` puis de s'y se connecter 
 * Créer un pipeline déclarant : 
     * Un service utilisant l'image `mongo`. 
     * Un job `connect` avec la même image.
-* Modifier l'`entrypoint` du job et le faire pointer sur `/bin/sh` 
+* Modifier l'`entrypoint` du job afin qu'il ne lance rien (vide) 
 
 > Au sein du job nous avons uniquement besoin du client Mongo. 
 > Pour éviter que la base mongo ne se lance, nous remplaçons l' `entrypoint` de l' image par un simple lancement du shell.  
