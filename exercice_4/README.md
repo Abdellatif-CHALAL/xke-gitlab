@@ -37,7 +37,7 @@ services:
 connect:
   image: 
     name: mongo
-    entrypoint: ["/bin/sh"] 
+    entrypoint: [""] 
   script:
     - mongo --host mongo --eval "db.adminCommand('listDatabases')"
 ```
