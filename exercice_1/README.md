@@ -60,17 +60,17 @@ stages:
 myBuildJob:
   stage: build
   script:
-    - echo "Running the build script"
+    - echo "Running the $CI_JOB_NAME script"
 
 myTestJob:
   stage: test
   script:
-    - echo "Running the test script"
+    - echo "Running the $CI_JOB_NAME script"
 
 myDeployJob:
   stage: deploy
   script:
-    - echo "Running the deploy script"
+    - echo "Running the $CI_JOB_NAME script"
 ```
 
 </p>
